@@ -26,5 +26,18 @@
             document.getElementById('result').innerText = "（AI 正在思考中...）\n\n建議訊息：家長您好，今日孩子在學校與同學發生了一點小摩擦，我們已經引導孩子練習情緒表達..." + input;
         }
     </script>
+    async function processAI() {
+    const input = document.getElementById('userInput').value;
+    const systemPrompt = "你是一位擅長 SEL 與正向管教的國小導師，請將以下描述轉化為親師溝通訊息：";
+    
+    const response = await fetch('/api/assistant', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ prompt: systemPrompt + input })
+    });
+    
+    const result = await response.json();
+    document.getElementById('result').innerText = result.candidates[0].content.parts[0].text;
+}
 </body>
 </html>
