@@ -1,1 +1,7 @@
-
+{
+  "name": "ai-teacher-assistant",
+  "version": "1.0.0",
+  "dependencies": {
+    "node-fetch": "^3.0.0"
+  }
+}
